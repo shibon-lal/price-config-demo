@@ -5,16 +5,11 @@ namespace App\Livewire\Product;
 use Livewire\Component;
 use Livewire\Attributes\On; 
 
-
 use App\Models\Products\Product;
 use App\Models\Products\Attribute;
 use App\Models\Products\Discount;
 
 use App\Services\Product\ProductService;
-
-
-use Illuminate\Support\Facades\Log;
-
 
 class ProductList extends Component
 {
@@ -28,12 +23,10 @@ class ProductList extends Component
     
     public function mount()
     {
-        Log::info('SQL mount:');
         $this->priceBreakdowns = [];
         $this->productAttributes = Attribute::with('options')->get();
         $this->products = Product::all();
         $this->discounts = Discount::orderBy('apply_order', 'asc')->get();
-        Log::info('SQL mount end:');
     }
 
     public function updatedUserType()
@@ -68,8 +61,6 @@ class ProductList extends Component
     public function calculatePrices()
     {
         $this->priceBreakdowns = [];
-        
-        Log::info('SQL calculatePrices:');
 
         foreach ($this->selectedProducts as $productId => $selected) {
             $product = $this->products->find($productId);
@@ -107,8 +98,6 @@ class ProductList extends Component
                 'final_price' => $finalPrice,
             ];
         }
-
-        Log::info('SQL calculatePrices end:');
     }
 
     public function getTotalPriceProperty()
