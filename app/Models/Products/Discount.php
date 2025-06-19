@@ -8,11 +8,14 @@ use App\Enums\ConditionType;
 class Discount extends Model
 {
     protected $fillable = [
+        'name',
         'condition_type',
         'condition_key',
         'condition_value',
-        'discount_method',
-        'discount_value'
+        'is_percentage',
+        'apply_order',
+        'discount_value',
+        'is_active'
     ];
 
     protected $casts = [

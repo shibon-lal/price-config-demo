@@ -10,7 +10,8 @@ class AttributeOption extends Model
     protected $fillable = [
         'attribute_id',
         'name',
-        'price'
+        'price',
+        'is_active'
     ];
 
     public function attribute(): BelongsTo
